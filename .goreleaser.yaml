@@ -1,0 +1,43 @@
+version: 2
+
+project_name: clidoc
+
+builds:
+  - id: clidoc
+    main: ./cmd/clidoc
+    binary: clidoc
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - windows
+      - linux
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+
+archives:
+  - formats:
+      - tar.gz
+    format_overrides:
+      - goos: windows
+        formats:
+          - zip
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    files:
+      - README.md
+      - LICENSE.md
+
+nfpms:
+  - id: clidoc
+    package_name: clidoc
+    vendor: CliDoc
+    homepage: https://github.com/lukasalmeida/clidoc
+    maintainer: CliDoc contributors
+    description: Geração de documentação de APIs a partir do código-fonte
+    license: Apache-2.0
+    formats:
+      - rpm
+    builds:
+      - clidoc
+    bindir: /usr/bin
