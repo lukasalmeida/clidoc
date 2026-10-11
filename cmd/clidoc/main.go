@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	webassets "github.com/lukasalmeida/clidoc/doc/images"
 	"github.com/lukasalmeida/clidoc/internal/config"
 	"github.com/lukasalmeida/clidoc/internal/generator"
 	"github.com/lukasalmeida/clidoc/internal/ir"
@@ -164,12 +165,7 @@ func cmdServe(args []string) {
 		}
 		_, _ = w.Write(data)
 	})
-	mux.HandleFunc("/icon.png", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "doc/images/icon.png")
-	})
-	mux.HandleFunc("/icon_transp.png", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "doc/images/icon_transp.png")
-	})
+	registerIconRoutes(mux)
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path != "/" {
 			http.NotFound(w, r)
@@ -184,6 +180,12 @@ func cmdServe(args []string) {
 		fmt.Fprintf(os.Stderr, "erro ao iniciar servidor: %v\n", err)
 		os.Exit(1)
 	}
+}
+
+func registerIconRoutes(mux *http.ServeMux) {
+	icons := http.FileServer(http.FS(webassets.FS))
+	mux.Handle("/icon.png", icons)
+	mux.Handle("/icon_transp.png", icons)
 }
 
 func generateForServe(cfg config.Config) {
