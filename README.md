@@ -155,6 +155,17 @@ Para parar o ambiente:
 docker compose down
 ```
 
+## Releases e executáveis
+
+As releases são geradas pelo GitHub Actions quando uma tag no formato `v*` é enviada ao repositório. Para publicar uma versão:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+Os assets da release incluem arquivos ZIP com o executável para Windows e arquivos TAR.GZ para Linux e macOS (Intel e Apple Silicon). Também é publicado um pacote RPM para Linux.
+
 ## Contribuição
 
 Contribuições são bem-vindas. O projeto ainda está em desenvolvimento e a estrutura da base pode evoluir conforme a primeira release for amadurecida.
