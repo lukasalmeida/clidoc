@@ -104,17 +104,37 @@ type Route struct {
 
 O projeto está em fase inicial de desenvolvimento. A base da arquitetura e o modelo de anotações já foram definidos, e a primeira release será focada em entregar a geração de documentação de forma simples, automatizada e extensível.
 
-## Como usar (em breve)
+## Como usar
 
-A CLI ainda está sendo implementada. O fluxo planejado será:
+O projeto já inclui a CLI inicial em Go. O fluxo atual é:
 
 ```bash
+# inicializa a configuração
 clidoc init
-clidoc generate
-clidoc serve
+
+# gera a documentação OpenAPI a partir do código
+clidoc generate --source . --output docs/openapi.json
+
+# gera a documentação em Markdown
+clidoc generate --source . --output docs/api.md --format markdown
+
+# inicia a visualização local em Swagger UI
+clidoc serve --port 8080
 ```
 
-Esses comandos terão como objetivo inicializar a configuração, gerar a documentação a partir do código e abrir uma visualização local da API documentada.
+O arquivo `clidoc.yaml` contém a configuração default do projeto:
+
+```yaml
+title: "CliDoc API"
+version: "1.0.0"
+base_url: "http://localhost:8080"
+source: "."
+output: "docs/openapi.json"
+port: 8080
+host: "0.0.0.0"
+```
+
+A documentação gerada pode ser visualizada em `http://localhost:8080` após iniciar o comando `serve`.
 
 ## Ambiente de desenvolvimento
 
