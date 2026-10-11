@@ -1,8 +1,10 @@
 # CliDoc
 
+![Ícone do CliDoc](doc/images/icon.png)
+
 CliDoc é uma ferramenta de linha de comando open source para automatizar a geração de documentação de APIs a partir da análise estática de comentários e código-fonte.
 
-Status: em desenvolvimento — a primeira release está sendo preparada.
+Status: beta 1 disponível — a primeira build pública já foi publicada para testes iniciais e feedback da comunidade.
 
 ## Visão geral
 
@@ -157,14 +159,18 @@ docker compose down
 
 ## Releases e executáveis
 
-As releases são geradas pelo GitHub Actions quando uma tag no formato `v*` é enviada ao repositório. Para publicar uma versão:
+A versão beta1 do CliDoc já foi publicada no GitHub Releases e está disponível para download e testes iniciais.
+
+As releases são geradas pelo GitHub Actions quando uma tag no formato `v*` é enviada ao repositório. Para publicar uma nova versão:
 
 ```bash
-git tag v1.0.0
-git push origin v1.0.0
+git tag v1.0.0-beta.1
+git push origin v1.0.0-beta.1
 ```
 
 Os assets da release incluem arquivos ZIP com o executável para Windows e arquivos TAR.GZ para Linux e macOS (Intel e Apple Silicon). Também é publicado um pacote RPM para Linux.
+
+A beta1 inclui a CLI inicial, geração de documentação OpenAPI 3.0 e suporte básico para exportação em Markdown, sendo indicada para avaliação funcional e coleta de feedback da comunidade.
 
 ## Contribuição
 
