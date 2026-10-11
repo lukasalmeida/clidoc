@@ -116,6 +116,25 @@ clidoc serve
 
 Esses comandos terão como objetivo inicializar a configuração, gerar a documentação a partir do código e abrir uma visualização local da API documentada.
 
+## Ambiente de desenvolvimento
+
+O ambiente de desenvolvimento usa Docker Compose e Go. É necessário ter Docker com o plugin Docker Compose instalado.
+
+Inicie o contêiner de desenvolvimento na raiz do repositório:
+
+```bash
+docker compose up -d --build
+docker compose exec dev sh
+```
+
+O código do repositório fica disponível em `/workspace`. As dependências e o cache de compilação do Go são mantidos em volumes Docker entre reinicializações. A porta `8080` do host é encaminhada para o contêiner para uso futuro pelo servidor de preview.
+
+Para parar o ambiente:
+
+```bash
+docker compose down
+```
+
 ## Contribuição
 
 Contribuições são bem-vindas. O projeto ainda está em desenvolvimento e a estrutura da base pode evoluir conforme a primeira release for amadurecida.
