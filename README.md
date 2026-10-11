@@ -97,7 +97,7 @@ type Route struct {
 ## Roadmap
 
 - [x] MVP inicial com parser Go básico e geração de OpenAPI 3.0 JSON
-- [ ] Suporte a exportação em Markdown
+- [x] Suporte a exportação em Markdown
 - [ ] Comando de preview local da documentação
 - [ ] Leitura automática de schemas e DTOs
 - [ ] Suporte a Python e TypeScript/Node.js
@@ -137,6 +137,7 @@ host: "0.0.0.0"
 ```
 
 A documentação gerada pode ser visualizada em `http://localhost:8080` após iniciar o comando `serve`.
+O Swagger UI abre com o tema escuro Terminal Horizon; use o botão no cabeçalho para alternar entre os temas. A escolha fica salva no navegador.
 
 ## Ambiente de desenvolvimento
 
@@ -169,6 +170,8 @@ git push origin v1.0.0-beta.1
 ```
 
 Os assets da release incluem arquivos ZIP com o executável para Windows e arquivos TAR.GZ para Linux e macOS (Intel e Apple Silicon). Também é publicado um pacote RPM para Linux.
+
+A arquitetura do pacote RPM deve corresponder à do computador. Confira-a com `uname -m`: em sistemas `x86_64`, baixe o RPM `linux_amd64`; em sistemas `aarch64`, baixe o RPM `linux_arm64`. Por exemplo, o pacote `clidoc_0.1.0-beta.1_linux_arm64.rpm` não pode ser instalado em um sistema `x86_64`.
 
 A beta1 inclui a CLI inicial, geração de documentação OpenAPI 3.0 e suporte básico para exportação em Markdown, sendo indicada para avaliação funcional e coleta de feedback da comunidade.
 
